@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    list-style: none;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    padding: 37px 48px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+nav ul {
+    text-align: end;
+}
+
+nav ul li {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+nav ul li a {
+    padding: 8px 48px;
+    color: #000;
+    text-decoration: none;
+}
+
+.hero-section {
+    background: linear-gradient(180.43deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('images/spacex-unsplash.jpg');
+    background-size: cover;
+    background-position: 50%;
+    height: 500px;
+    color: #fff;
+    padding: 144px 0;
+    padding-bottom: 90px;
+}
+
+.hero-content {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.hero-content h1 {
+    font-size: 64px;
+    font-weight: 300;
+    margin-bottom: 24px;
+}
+
+.hero-content p {
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+}
+
+button {
+    margin-top: 30px;
+    padding: 15px 30px;
+    border: none;
+    background-color: #fff;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e2e6ea;
+}
