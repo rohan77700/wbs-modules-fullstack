@@ -1,0 +1,263 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+    list-style: none;
+    text-decoration: none;
+}
+
+header {
+    position: fixed;
+    width: 98%;
+    padding: 20px;
+    background-color: #000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: #daa520;
+    text-decoration: none;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+}
+
+nav {
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: #daa520;
+}
+
+.hero-section {
+    background: url('image/giphy.gif');
+    background-size: cover;
+    background-position: 50%;
+    height: 570px;
+    color: #fff;
+    padding: 144px 0;
+    padding-bottom: 90px;
+}
+
+.hero-content,
+.bio-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-content h1 {
+    margin-bottom: 24px;
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero-content p {
+    margin-bottom: 24px;
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.hero-btn {
+    margin-top: 50px;
+    padding: 15px 30px;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.hero-btn:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.bio-section,
+.narrative-secton,
+.commerical-section,
+.musicvideos-section,
+.contact-section {
+    background-color: #000;
+    color: #fff;
+    padding: 100px 0;
+    padding-bottom: 90px;
+}
+
+.bio-content h1 {
+    margin-bottom: 24px;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.bio-content p {
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin-bottom: 5%;
+}
+
+.bio-content a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.project-section {
+    padding: 100px 0;
+}
+
+.project-content,
+.contact-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project-content a {
+    text-decoration: none;
+}
+
+.project-content img {
+    width: 50px;
+    height: 50px;
+    margin-left: 45%;
+}
+
+.project-content h3 {
+    margin-top: 10%;
+    margin-left: 40%;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.project-content p {
+    margin: 10px;
+    padding: 10px;
+    color: #808080;
+    text-align: center;
+}
+
+.narrative-content,
+.commerical-content,
+.musicvideos-content {
+    background-color: #000;
+    color: #fff;
+}
+
+.narrative-content h1,
+.commerical-content h1,
+.musicvideos-content h1 {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 3px;
+}
+
+.btn {
+    margin-left: 45%;
+    padding: 15px 30px;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.gear-section {
+    background: url('image/equipment.jpg');
+    background-size: cover;
+    background-position: 50%;
+    height: 500px;
+    color: #fff;
+    padding: 150px 0;
+    padding-bottom: 90px;
+}
+
+.gear-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gear-content h1,
+.follow h3 {
+    font-size: 36px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.gear-content p {
+    color: #a78458;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.follow p,
+.subscribe p {
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+.social a {
+    padding: 50px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.subscribe input {
+    display: block;
+    width: 132%;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    font-size: 16px;
+}
+
+.subscribe-btn {
+    width: 150%;
+    margin-top: 10px;
+    padding: 15px 30px;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.subscribe-btn:hover {
+    background-color: #d0980b;
+    color: #000;
+}
