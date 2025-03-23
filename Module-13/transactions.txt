@@ -1,0 +1,10 @@
+Deposit - $20000.0 		 Balance - $20000.0
+Deposit - $50000.0 		 Balance - $70000.0
+Deposit - $30000.0 		 Balance - $100000.0
+Withdrawal - $50000.0 		 Balance - $50000.0
+Withdrawal - $2000.0 		 Balance - $48000.0
+Deposit - $52000.0 		 Balance - $100000.0
+Deposit - $75000.0 		 Balance - $175000.0
+Withdrawal - $15000.0 		 Balance - $160000.0
+Withdrawal - $60000.0 		 Balance - $100000.0
+Deposit - $200000.0 		 Balance - $300000.0
