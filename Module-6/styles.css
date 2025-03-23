@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#layout {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000;
+    color: #fff;
+    flex-basis: 100%;
+    padding: 20px;
+    border-bottom: 1px solid #aaa;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+}
+
+nav input {
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+nav button {
+    display: none;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.sidebar {
+    flex-basis: 20%;
+    padding: 20px;
+    background-color: #505f86;
+}
+
+.sidebar ul {
+    margin-top: 20px;
+}
+
+.sidebar ul li {
+    padding: 10px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+
+}
+
+.content {
+    background: linear-gradient(180.43deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('thomas-bormans-pcpsVsyFp_s-unsplash.jpg');
+    background-size: cover;
+    width: 50%;
+    height: 100vh;
+    flex-basis: 80%;
+    padding: 20px;
+    color: #fff;
+}
+
+.content h1 {
+    color: #000;
+}
+
+.content p {
+    margin: 20px;
+}
+
+.content a {
+    color: #af3737;
+    font-size: 18px;
+}
+
+.content input {
+    margin: 20px 10px; 
+    color: #fff;
+}
+
+@media (max-width: 660px) {
+    .sidebar,
+    .content {
+        height: fit-content;
+        flex-basis: 100%;
+        border-right: 0;
+    }
+    .sidebar ul {
+        display: inline-flex;
+    }
+    .content img {
+        width: 100%;
+    }
+}
+
+@media (max-width: 475px) {
+    input[type="search"] {
+        display: none;
+    }
+    .sidebar {
+        display: none;
+    }
+    nav button {
+        display: block;
+    }
+}
