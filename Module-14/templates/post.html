@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}iShare - NewPost{% endblock title %}
+
+{% block style %}
+    <style>
+        .custom-file-container {
+            position: relative;
+            display: inline-block;
+            width: 430px;
+            height: 230px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px;
+        }
+
+        .custom-file-container input {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+            cursor: pointer;
+        }
+    </style>
+{% endblock style %}
+
+
+{% block content %}
+    <form class="col-sm-4 offset-sm-4 my-5 py-5" method="POST" action="" enctype="multipart/form-data" autocomplete="off">
+        <h1 class="text-center">Upload New Post</h1>
+        <hr><br>
+        {% csrf_token %}
+        <label for="image">Image</label> 
+        <div class="custom-file-container">
+            {{ form.image }}
+        </div>
+        <div class="form-group">
+            <label for="text">Description</label>
+            {{ form.text }}
+        </div>
+        <hr>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-lg btn-danger rounded-pill px-5">Save</button>
+        </div> 
+    </form>
+{% endblock content %}

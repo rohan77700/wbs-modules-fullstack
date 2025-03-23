@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block title %}iShare{% endblock title %}
+
+{% block style %}
+    <style>
+        .masonry {
+            column-count: 4;
+            column-gap: 1rem;
+        }
+        .masonry-item {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 1rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .masonry-item img {
+            width: 100%;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            object-fit: cover;
+            height: auto;
+            cursor: pointer;
+        }
+        .masonry-item .caption {
+            padding: 1rem;
+        }
+        .size-small img {
+            height: 250px;
+        }
+        .size-normal img {
+            height: 350px;
+        }
+        .size-large img {
+            height: 500px;
+        }
+        .empty-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+{% endblock style %}
+
+{% block content %}
+    <div class="masonry my-5">
+        {% for post in posts %}
+            {% thumbnail post.image "500x500" crop="center" as im %}
+                {% if im.width > 500 %}
+                    <div class="masonry-item size-large">
+                {% elif im.width > 350 %}
+                    <div class="masonry-item size-normal">
+                {% else %}
+                    <div class="masonry-item size-small">
+                {% endif %}
+                    <img src="{{ im.url }}" class="card-img-top" alt="..." onclick="window.location.href='{% url "app:detail" post.id %}'">
+                    <div class="caption">
+                        <p class="card-text">{{ post.text }}</p>
+                    </div>
+                </div>
+            {% endthumbnail %}
+            
+        {% empty %}
+            <div class="row justify-content-center">    
+                <div class="empty-content">
+                    <div class="col-sm-6 offset-3 text-center my-5 py-5">
+                        <h1 class="display-1 mt-5 mb-5">Welcome</h1>
+                        <p>Share your moments by uploading your first post here.</p>
+                        <p>- inspired by <em>Pinterest</em></p>
+                        <br><hr>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <a href="{% url "app:post" %}" class="btn btn-lg btn-danger rounded-pill">Upload Post</a>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
