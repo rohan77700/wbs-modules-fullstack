@@ -1,0 +1,26 @@
+{% load thumbnail %}
+
+<div class="max-w-4xl px-10 my-4 py-6 bg-white rounded-lg shadow-md" style="width: 50rem;">
+    <div class="flex justify-between items-center">
+        <span class="font-light text-gray-600">{{ post.date }}</span>
+    </div>
+    <div class="mt-2">
+        <a class="text-2xl text-gray-700 font-bold hover:text-gray-600" href="#">{{ post.title }}</a>
+        <p class="mt-2 text-gray-600">{{ post.text }}</p>
+    </div>
+    <div class="flex justify-between items-center mt-4">
+        {% if show_detail_link %}
+            <a class="text-blue-600 hover:underline" href="{% url "app:detail" post.id %}">Read more</a>
+        {% else %}
+            <span>&nbsp;</span>
+        {% endif %}
+        <div>
+            <a class="flex items-center" href="{% url "profiles:detail" post.author.username %}">
+                {% thumbnail post.author.profile.image "300x300" crop="center" as im %}
+                    <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" src="{{ im.url }}" alt="avatar">
+                {% endthumbnail %}
+                <h1 class="text-gray-700 font-bold">{{ post.author.username }}</h1>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %} Postlink {% endblock title %}
+
+{% block content %}
+    <div id="posts-container">
+        {% for post in posts %}
+            {% include "include/post.html" with post=post show_detail_link=True %}
+        {% endfor %}
+    </div>
+{% endblock content %}

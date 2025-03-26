@@ -1,0 +1,138 @@
+{% load static %}
+
+{% load thumbnail %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Postlink {% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
+    {% block css %}{% endblock css %}
+</head>
+<body>
+
+    <div
+      id="view"
+      class="min-h-screen w-screen flex flex-row bg-gray-100">
+      <div
+        id="sidebar"
+        class="bg-white md:block shadow-xl px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out"
+        x-show="sidenav"
+        @click.away="sidenav = false"
+      >
+        <div class="space-y-6 md:space-y-10 mt-10">
+          <a href="/">
+            <h1 class="hidden md:block font-bold text-sm md:text-xl text-center">
+              Postlink.
+            </h1>
+          </a>
+          {% if request.user.is_authenticated %}
+            <div id="profile" class="space-y-3">
+              <a href="{% url "profiles:detail" user.username %}">
+                {% thumbnail user.profile.image "100x100" crop="center" as im %}
+                  <img src="{{ im.url }}" class="w-10 md:w-16 rounded-full mx-auto" alt="Avatar user"/>
+                {% endthumbnail %}
+                <div class="mt-3">
+                  <h2 class="font-medium text-xs md:text-sm text-center text-teal-500">
+                    {{ user.username }}
+                  </h2>
+                </div>
+              </a>
+            </div>
+          {% else %}
+            <div id="profile" class="space-y-3">
+              <img src="/media/default_avatar.jpg" class="w-10 md:w-16 rounded-full mx-auto" alt="Avatar user"/>
+              <div>
+                <h2 class="font-medium text-xs md:text-sm text-center text-teal-500">
+                  Unknown User
+                </h2>
+              </div>
+            </div>
+          {% endif %}    
+          <div id="menu" class="flex flex-col space-y-2">
+            <a href="/" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+              <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-home"></i></span>
+              <span class="text-sm font-medium">Home</span>
+            </a>
+
+            {% if request.user.is_authenticated %}
+                <a href="{% url "app:new_post" %}" class="js-toggle-modal flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800 js-toggle-modal">
+                    <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-layer-plus"></i></span>
+                    <span class="text-sm font-medium">New post</span>
+                </a>
+
+                <div class="js-toggle-dropdown">
+                  <button type="button" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                    <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-user-circle"></i></span>
+                    <span class="text-sm font-medium">Account settings</span>
+                  </button>
+                  <div class="mx-8 w-full bg-white rounded-md hidden js-dropdown">
+                    <button type="button" data-url="{% url "profiles:update_username" user.username %}" class="block px-4 py-2 text-sm text-gray-800 hover:underline transform hover:translate-x-2 transition-transform ease-in duration-200">Change username</button>
+                    <button type="button" data-url="{% url "profiles:update_name" user.username %}" class="block px-4 py-2 text-sm text-gray-800 hover:underline transform hover:translate-x-2 transition-transform ease-in duration-200">Change name</button>
+                    <button type="button" data-url="{% url "profiles:update_password" user.username %}" class="block px-4 py-2 text-sm text-gray-800 hover:underline transform hover:translate-x-2 transition-transform ease-in duration-200">Change password</button>
+                    <button type="button" data-url="{% url "profiles:update_avatar" user.username %}" class="block px-4 py-2 text-sm text-gray-800 hover:underline transform hover:translate-x-2 transition-transform ease-in duration-200">Change avatar image</button>
+                  </div>
+                </div>
+
+                <a href="{% url 'account_logout' %}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                    <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-log-out"></i></span>
+                    <span class="text-sm font-medium">Logout</span>
+                </a>
+            {% else %}
+                <a href="{% url 'account_login' %}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                    <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-log-in"></i></span>
+                    <span class="text-sm font-medium">Login</span>
+                </a>
+            {% endif %}
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="mx-auto p-16">
+          {% block content %}{% endblock content %}
+      </div>
+     
+      {% if request.user.is_authenticated %}
+        <div class="flex items-center justify-center h-screen hidden js-modal">
+          <div>
+            <div class="fixed inset-0 transition-opacity">
+              <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <div class="fixed z-10 inset-0 overflow-y-auto">
+              <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="w-full inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                  <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                      <div class="w-full mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">New Post</h3>
+                        <div class="mt-2">
+                          <div class="w-full text-sm text-gray-500">
+                            <input class="border-2 border-blue-500 w-full my-4 p-2 js-post-title" row="3" type="text" placeholder="Title" maxlength="50" data-post-url="{% url "app:new_post" %}">
+                            <textarea class="border-2 border-blue-500 w-full my-4 p-2 js-post-text" row="3" placeholder="Enter your post" maxlength="250" data-post-url="{% url "app:new_post" %}"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" class="js-submit w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">Create Post</button>
+                    <button type="button" class="js-toggle-modal mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{% static "javascript/main.js" %}"></script>
+
+</body>
+</html>
